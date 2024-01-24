@@ -38,6 +38,13 @@ router.put('/:id', async (req, res)=>{
     res.send({status:'success'})
 })
 
+router.delete('/:id', async (req,res)=>{
+    const id = req.params.id; 
+    await manager.deleteItem(id);
+    res.send({status:'success'})
+})
+
+
 //Agregamos la carga inicial de productos
 async function addProducts(){
     await manager.addItem({description:'item 1'})
