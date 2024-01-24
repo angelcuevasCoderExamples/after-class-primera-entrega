@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 class ItemsManager {
-    static id; 
+    static id = 0; 
 
     constructor(path){
         this.path = path; 
@@ -9,7 +9,6 @@ class ItemsManager {
         fs.writeFileSync(path, '[]')
         
     }
-
 
     async addItem(item){
         
@@ -38,6 +37,15 @@ class ItemsManager {
         const item = items.find(i=>i.id == id) //buscamos un item con ese mismo id 
 
         return item; 
+    }
+
+    async updateItem(id, newItem){
+        let items = await this.getItems();
+        let index = items.findIndex(i=>i.id == id) 
+
+        items[index] = {...newItem, id: items[index].id }; 
+        
+        await fs.promises.writeFile(this.path, JSON.stringify(items,null, '\t')); //escribimos el archivo
     }
 }
 
