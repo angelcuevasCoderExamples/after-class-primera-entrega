@@ -1,10 +1,6 @@
 [
 	{
-		"description": "item 1",
-		"id": null
-	},
-	{
 		"description": "item 2",
-		"id": null
+		"id": 2
 	}
 ]
